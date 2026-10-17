@@ -58,3 +58,14 @@ credentials.json
 Thumbs.db
 .idea/
 .vscode/
+
+# ---- team scratch (never committed) ----
+submissions_*/
+handin/
+fidelity_*/
+val_out_*/
+best3/
+demo_extras/
+_*.py
+calibration_*.json
+post_experiment.json
