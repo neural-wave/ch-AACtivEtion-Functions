@@ -27,7 +27,7 @@ holdout/
 
 # ---- predictions / scores / scratch ----
 predictions/
-submissions/
+submissions/_*
 val_out/
 sanity_out/
 val_manifest.jsonl
