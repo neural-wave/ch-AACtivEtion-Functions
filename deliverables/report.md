@@ -75,14 +75,9 @@ the same garment consistently and flags shape errors.
 
 ## 4. What worked and what did not
 
-| Variant (38-pair holdout, official scorer) | Score |
-|---|---|
-| Hosted baseline (organisers' prompt, 1 candidate) | 60.55 |
-| Our packshot prompt v2 | 61.01 |
-| Prompt v2 + 3 candidates + colour-consensus selection | **61.04** |
-| Constant Lab colour calibration fitted on 40 train pairs | 60.70 |
-| Colour correction towards the phone photo's garment colour | 59.06 |
-| Post-processing (flat-field, white background clean-up, unsharp) | ≤ raw output |
+![Results](figure_results.png)
+
+**Figure 3.** A: every idea scored on our holdout; prompt + three-candidate consensus wins (61.04), colour correction towards the phone photo loses (59.06). B: dev leaderboard 68.31 → 70.79. C: on the 15 on-site garments, protocol photos beat the organisers' snapshots by ~20 points on the fidelity check.
 
 Findings that shaped the final pipeline:
 
@@ -126,7 +121,7 @@ two candidates side by side. It never calls the model, so what the jury sees is 
 
 ![UI](figure_ui.jpg)
 
-**Figure 3.** The review UI on g09: drag the divider to reveal the packshot (left) over the phone photo (right); the chest badge and collar label can be checked at 4× with the magnifier.
+**Figure 4.** The review UI on g09: drag the divider to reveal the packshot (left) over the phone photo (right); the chest badge and collar label can be checked at 4× with the magnifier.
 
 **Repository** `neural-wave/ch-AACtivEtion-Functions`: `README.md` (run instructions), `pipeline.py`,
 `notebooks/day2_final_pipeline_v2.ipynb` (the exact cells we ran), `docs/CAPTURE_PROTOCOL.md`,
