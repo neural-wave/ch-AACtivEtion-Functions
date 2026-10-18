@@ -30,11 +30,14 @@ We did not train a model. Our contribution is the loop around a hosted image-edi
 4. **Always submit.** For garments we could not photograph ourselves, a picture generated from the
    organisers' snapshot fills the slot.
 
-Everything runs on a laptop in minutes; a full test-set run costs about USD 3 in API calls.
+![Pipeline](figure_pipeline.png)
+
+**Figure 1.** The pipeline: capture → edit (three candidates) → select → validate → hand-in.
+
 
 ![Two on-site garments. Left pair: our protocol photo and the packshot generated from it (the hand-in). Right pair: the organisers' quick snapshot of the same garment and the packshot generated from it. The lay, the logo and the wash of the denim survive from the protocol photo; the snapshot version darkens the denim and loses the lay.](figure_examples.jpg)
 
-**Figure 1.** Two of the 15 on-site garments (g09, g04). From the protocol photo the model keeps the exact lay, the chest badge and the grey stone-wash; from the organisers' hanger snapshot the same model darkens the denim and invents the silhouette.
+**Figure 2.** Two of the 15 on-site garments (g09, g04). From the protocol photo the model keeps the exact lay, the chest badge and the grey stone-wash; from the organisers' hanger snapshot the same model darkens the denim and invents the silhouette.
 
 ## 2. Capture protocol (what a Sartiq customer would do)
 
@@ -59,7 +62,7 @@ names.
 Why this protocol and not a more elaborate one: the model copies the lay it sees and takes colour,
 texture and details from the close-ups, so the two things worth a customer's effort are a straight,
 symmetric lay and sharp close-ups. Everything else (background removal, lighting, centring) the model
-does well on its own. Figure 1 shows the difference the protocol makes on the same garment.
+does well on its own. Figure 2 shows the difference the protocol makes on the same garment.
 
 ## 3. How we measured
 
@@ -120,6 +123,10 @@ level — did not beat 70.79 within noise, so the hand-in uses the 70.79 picture
 phone photo and a packshot, a scan/reveal transition, a drag-to-reveal before/after comparison on the
 same frame, and a hover magnifier up to 4× for logos, buttons and weave; a two-garment version shows
 two candidates side by side. It never calls the model, so what the jury sees is exactly the hand-in.
+
+![UI](figure_ui.jpg)
+
+**Figure 3.** The review UI on g09: drag the divider to reveal the packshot (left) over the phone photo (right); the chest badge and collar label can be checked at 4× with the magnifier.
 
 **Repository** `neural-wave/ch-AACtivEtion-Functions`: `README.md` (run instructions), `pipeline.py`,
 `notebooks/day2_final_pipeline_v2.ipynb` (the exact cells we ran), `docs/CAPTURE_PROTOCOL.md`,
