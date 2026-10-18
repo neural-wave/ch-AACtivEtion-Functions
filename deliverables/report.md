@@ -32,7 +32,7 @@ We did not train a model. Our contribution is the loop around a hosted image-edi
 
 ![Pipeline](figure_pipeline.png)
 
-**Figure 1.** The pipeline: capture → edit (three candidates) → select → validate → hand-in.
+**Figure 1.** The pipeline: capture → edit (three candidates) → select → validate → submission.
 
 
 ![Two on-site garments. Left pair: our protocol photo and the packshot generated from it (the hand-in). Right pair: the organisers' quick snapshot of the same garment and the packshot generated from it. The lay, the logo and the wash of the denim survive from the protocol photo; the snapshot version darkens the denim and loses the lay.](figure_examples.jpg)
