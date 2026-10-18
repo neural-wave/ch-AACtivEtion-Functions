@@ -1,6 +1,6 @@
 # From phone photo to packshot: capture, edit, select
 
-**Team AACtivEtion Function** — Mohammadmahdi Ameridaragheh, Qi An, Arianna Silvestri, Eduardo Trabattoni, Andrea Gemetti
+**Team AACtivEtion Function** — Mohammadmahdi Ameridaragheh, Qi An, Arianna Silvestri, Eduardo Trabattoni, Andrea Gemetti.  
 Sartiq challenge, Neural Wave 2026, USI Lugano, 16–18 October 2026
 
 ## 1. Problem and approach
@@ -32,7 +32,29 @@ We did not train a model. Our contribution is the loop around a hosted image-edi
 
 Everything runs on a laptop in minutes; a full test-set run costs about USD 3 in API calls.
 
-## 2. How we measured
+![Two on-site garments. Left pair: our protocol photo and the packshot generated from it (the hand-in). Right pair: the organisers' quick snapshot of the same garment and the packshot generated from it. The lay, the logo and the wash of the denim survive from the protocol photo; the snapshot version darkens the denim and loses the lay.](figure_examples.jpg)
+
+**Figure 1.** Two of the 15 on-site garments (g09, g04). From the protocol photo the model keeps the exact lay, the chest badge and the grey stone-wash; from the organisers' hanger snapshot the same model darkens the denim and invents the silhouette.
+
+## 2. Capture protocol (what a Sartiq customer would do)
+
+The protocol is three minutes per garment with any phone (full text in `docs/CAPTURE_PROTOCOL.md`):
+
+1. **Surface and light.** A plain light matte surface (white table, paper, light floor); window or room
+   light; flash off; no shadow of the photographer on the garment.
+2. **Lay.** Front up, collar at the top; smooth from the centre outwards; sleeves at the same angle on
+   both sides; placket/zip centred; buttons and zips closed; pockets and collar flattened. Heavy
+   wrinkles: hands, a bottle rolled over the fabric, or a few seconds of steam.
+3. **Shots.** One top-down front shot (phone parallel to the surface, garment ≈ 80 % of the frame),
+   3–6 close-ups from 20–30 cm (neck label, logo/print, buttons or zip, a pocket, plain fabric), and
+   optionally one back shot. Folder `captures/day1_clean/<gid>/`, best front listed in `best_fronts.csv`.
+
+Why this protocol and not a more elaborate one: the model copies the lay it sees and takes colour,
+texture and details from the close-ups, so the two things worth a customer's effort are a straight,
+symmetric lay and sharp close-ups. Everything else (background removal, lighting, centring) the model
+does well on its own. Figure 1 shows the difference the protocol makes on the same garment.
+
+## 3. How we measured
 
 The organisers' leaderboard gives one number per round, so we built an honest local loop first: a
 38-pair holdout carved from `train/` with the official scorer (`scripts/make_holdout.py`,
@@ -41,7 +63,7 @@ garments, which have no public reference, we scored each result against our own 
 as a stand-in reference ("fidelity check"); this is not the official score, but it ranks variants of
 the same garment consistently and flags shape errors.
 
-## 3. What worked and what did not
+## 4. What worked and what did not
 
 | Variant (38-pair holdout, official scorer) | Score |
 |---|---|
@@ -74,7 +96,7 @@ to **70.79** (final prompt, three candidates, consensus selection), rank 1 at th
 Two late experiments — per-garment detail notes for the dev set and the model's "high" thinking
 level — did not beat 70.79 within noise, so the hand-in uses the 70.79 pictures.
 
-## 4. Limitations and next steps
+## 5. Limitations and next steps
 
 * The selection rule has no reference; it rewards agreement, not correctness. Three candidates is
   the minimum for a consensus; more candidates improve the odds at linear cost.
@@ -85,9 +107,9 @@ level — did not beat 70.79 within noise, so the hand-in uses the 70.79 picture
   (logo text, button count) and rejects candidates that drop a detail; a second edit pass restricted
   to the region of a wrong logo.
 
-## 5. Reproducibility
+## 6. Reproducibility
 
-Repository `NW_26_aactivetion_function`: `README.md` (run instructions), `pipeline.py`,
+Repository `neural-wave/ch-AACtivEtion-Functions`: `README.md` (run instructions), `pipeline.py`,
 `notebooks/day2_final_pipeline_v2.ipynb` (the exact cells we ran), `docs/CAPTURE_PROTOCOL.md`,
-`submissions/aactivetion_function/` (hand-in), `ui/` (jury demo). Dataset and API key are not in
-the repository.
+`submissions/aactivetion_function/` (hand-in), `ui/` (Gradio demo: before/after slider and magnifier). The 2-minute video is in
+`deliverables/`. Dataset and API key are not in the repository.
