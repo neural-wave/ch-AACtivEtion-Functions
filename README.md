@@ -15,11 +15,11 @@ Team **aactivetion_function** (GitHub: `neural-wave/ch-AACtivEtion-Functions`), 
 
 | Name | Role |
 |---|---|
-| Mohammadmahdi Ameridaragheh | Code, pipeline runs, sensitivity analysis of the parameters, submissions |
-| Qi An | UI design and implementation, photography, image comparison |
-| Arianna Silvestri | Image optimisation experiments (curvature, pixel fixes), photography, image comparison |
-| Eduardo Trabattoni | Model tuning, report, photography |
-| Andrea Gemetti | Team member (day 1) |
+| Mohammadmahdi Ameridaragheh | Code, pipeline runs, sensitivity analysis of the parameters, submissions, photography, report |
+| Qi An | UI design and implementation, photography, image comparison, report |
+| Arianna Silvestri | Image optimisation experiments (curvature, pixel fixes), photography, image comparison, video |
+| Eduardo Trabattoni | Model tuning, photography, video |
+| Andrea Gemetti | Ideas and brainstorming (day 1) |
 
 ## What we built, in one paragraph
 
