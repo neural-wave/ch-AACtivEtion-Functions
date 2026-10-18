@@ -19,7 +19,7 @@ Team **aactivetion_function** (GitHub: `neural-wave/ch-AACtivEtion-Functions`), 
 | Qi An | UI design and implementation, photography, image comparison, report |
 | Arianna Silvestri | Image optimisation experiments (curvature, pixel fixes), photography, image comparison, video |
 | Eduardo Trabattoni | Model tuning, photography, video |
-| Andrea Gemetti | Ideas and brainstorming (day 1) |
+| Andrea Gemetti | Ideas and brainstorming |
 
 ## What we built, in one paragraph
 
