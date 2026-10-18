@@ -1,11 +1,22 @@
 from pathlib import Path
+import hashlib
 import base64
 import io
 import time
+import json
+import shutil
+import subprocess
+import sys
+import uuid
 
 import gradio as gr
 from PIL import Image, ImageOps
 
+
+APP_DIR = Path(__file__).resolve().parent
+PIPELINE = APP_DIR.parent / "pipeline.py"   # repo root
+RUNS_DIR = APP_DIR.parent / "gradio_runs"
+TEAM_SLUG = "aactivetion_function"
 
 CSS = r"""
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400&display=swap');
@@ -271,26 +282,122 @@ def refresh_views(input_path, output_path, view):
     return output_path or None, comparison, shown or None, message
 
 
-def scan_image(image_path):
+
+APP_DIR = Path(__file__).resolve().parent
+PIPELINE = APP_DIR.parent / "pipeline.py"   # repo root
+RUNS_DIR = APP_DIR.parent / "gradio_runs"
+TEAM_SLUG = "aactivetion_function"
+
+
+def run_real_pipeline(input_path):
+    if not input_path:
+        raise gr.Error("Please upload a garment image first.")
+
+    if not PIPELINE.exists():
+        raise gr.Error(f"Pipeline not found: {PIPELINE}")
+
+    # Create a unique folder for each upload.
+    job_id = hashlib.sha1(Path(input_path).read_bytes()).hexdigest()[:12]
+    job_dir = RUNS_DIR / job_id
+    job_dir.mkdir(parents=True, exist_ok=True)
+
+    # Save the uploaded image in the format expected by the pipeline.
+    input_file = job_dir / "input.png"
+    image = open_rgb(input_path)
+    if image is None:
+        raise gr.Error("The uploaded image could not be read.")
+    image.save(input_file, format="PNG")
+
+    # The pipeline expects a JSONL manifest with an ID and input paths.
+    manifest = job_dir / "manifest.jsonl"
+    with manifest.open("w", encoding="utf-8") as f:
+        f.write(json.dumps({
+            "garment_id": job_id,
+            "inputs": ["input.png"]
+        }) + "\n")
+
+    out_dir = job_dir / "results"
+
+    cmd = [
+        sys.executable,
+        str(PIPELINE),
+        "--manifest", str(manifest),
+        "--dataset", str(job_dir),
+        "--out", str(out_dir),
+        "--team", TEAM_SLUG,
+        "--candidates", "3",
+        "--max-inputs", "3",
+        "--limit", "1",
+        "--workers", "1",
+    ]
+
+    try:
+        result = subprocess.run(
+            cmd,
+            cwd=str(APP_DIR),
+            capture_output=True,
+            text=True,
+            timeout=1200,
+        )
+    except subprocess.TimeoutExpired:
+        raise gr.Error("Reconstruction timed out. Please try again.")
+
+    if result.returncode != 0:
+        details = (result.stderr or result.stdout)[-3000:]
+        raise gr.Error(f"Pipeline failed:\n{details}")
+
+    output_file = (
+        out_dir / TEAM_SLUG / job_id / "front.png"
+    )
+
+    if not output_file.exists():
+        raise gr.Error(
+            "Pipeline finished, but the output image was not found."
+        )
+
+    return str(output_file)
+
+
+def scan_image(image_path, confirmed):
+    empty_compare = '<div class="cmp-empty">WAITING FOR BOTH IMAGES</div>'
+
     if not image_path or not Path(image_path).is_file():
         yield (
             "Please upload a garment photo first.",
-            "No image received. No model was run and no API was called.",
-            IDLE_HTML,
+            "No image received. Nothing was run and no API was called.",
+            None, empty_compare, IDLE_HTML,
         )
         return
+
+    if not confirmed:
+        yield (
+            "Tick the box to confirm a paid run.",
+            "Nothing was run and no API was called.",
+            None, empty_compare, IDLE_HTML,
+        )
+        return
+
     yield (
-        "Scanning uploaded image…",
-        "Checking the local input. This animation is not model inference.",
-        SCANNING_HTML,
-    )
-    time.sleep(1.5)
-    yield (
-        "Input ready · Awaiting reconstruction",
-        " ",
-        READY_HTML,
+        "Running the pipeline… this takes about a minute.",
+        "Calling the paid image API. The gold beam is a visual effect, not a progress bar.",
+        None, empty_compare, SCANNING_HTML,
     )
 
+    try:
+        output_path = run_real_pipeline(image_path)
+        comparison_html, comparison_detail = render_compare(image_path, output_path)
+        yield (
+            "Reconstruction complete",
+            comparison_detail,
+            output_path, comparison_html,
+            '<div class="idle-stage">PIPELINE RUN COMPLETE</div>',
+        )
+    except Exception as e:
+        yield (
+            "Reconstruction failed",
+            str(e),
+            None, empty_compare, IDLE_HTML,
+        )
 
 def download_input(image_path):
     if image_path and Path(image_path).is_file():
@@ -336,6 +443,10 @@ with gr.Blocks(
                     label="GARMENT INPUT", type="filepath", height=350,
                     sources=["upload"], elem_id="input-image",
                 )
+                confirm_run = gr.Checkbox(
+                    label="I understand this calls a paid image API (about $0.18 per garment)",
+                    value=False,
+                )
                 with gr.Row():
                     scan_button = gr.Button("SCAN GARMENT ↗", variant="primary")
                     reset_button = gr.Button("RESET", variant="secondary")
@@ -371,7 +482,12 @@ with gr.Blocks(
             """)
         detail = gr.Textbox(label="PROCESSING DETAILS", value="Waiting for input.", interactive=False, lines=2)
 
-    scan_button.click(fn=scan_image, inputs=[input_image], outputs=[status, detail, scan_panel], show_progress="hidden")
+    scan_button.click(
+        fn=scan_image,
+        inputs=[input_image, confirm_run],
+        outputs=[status, detail, output_image, comparison_image, scan_panel],
+        show_progress="hidden",
+    )
 
     refresh_inputs = [input_image, real_output_input, view_choice]
     refresh_outputs = [output_image, comparison_image, inspect_source, compare_status]

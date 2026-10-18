@@ -114,10 +114,11 @@ level — did not beat 70.79 within noise, so the hand-in uses the 70.79 picture
 
 ## 6. Tooling and reproducibility
 
-**Review UI** (`ui/`, Gradio). Because selection is partly by eye, we built a small viewer: load the
-phone photo and a packshot, a scan/reveal transition, a drag-to-reveal before/after comparison on the
-same frame, and a hover magnifier up to 4× for logos, buttons and weave; a two-garment version shows
-two candidates side by side. It never calls the model, so what the jury sees is exactly the hand-in.
+**Demo UI** (`ui/`, Gradio). Because selection is partly by eye, we built a small app: upload a phone photo,
+press *Scan garment* and the app runs `pipeline.py` live (three candidates, consensus pick, about $0.18),
+then shows the packshot with a scan/reveal transition, a drag-to-reveal before/after comparison on the
+same frame, and a hover magnifier up to 4× for logos, buttons and weave; an existing packshot can be loaded
+instead, and a two-garment version shows two candidates side by side.
 
 ![UI](figure_ui.jpg)
 

@@ -49,7 +49,7 @@ submissions/aactivetion_function/        THE HAND-IN: one front.png per garment
 deliverables/             report (PDF + Markdown) and the 2-minute video
 docs/CAPTURE_PROTOCOL.md  how to photograph a garment so the pipeline works
 docs/Flat-Lay_Capture_Protocol_onsite.pdf   the detailed on-site checklist (iPhone settings, per-garment table, styling templates)
-ui/                       Gradio demo: before/after slider and magnifier for the jury
+ui/                       Gradio demo: runs the pipeline on an uploaded photo, before/after slider, magnifier
 scorer/, scripts/, docs/, baselines/   the organisers' starter material, unchanged
 ```
 
