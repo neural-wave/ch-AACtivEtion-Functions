@@ -8,7 +8,7 @@ Team **aactivetion_function** (GitHub: `neural-wave/ch-AACtivEtion-Functions`), 
 | Dev leaderboard | **70.79** (rank 1 at the last scoring round before the freeze) |
 | Final pictures | `submissions/aactivetion_function/` — 15 on-site garments `g01–g15` + 27 dev garments `d001–d027` |
 | Report | [`deliverables/report.pdf`](deliverables/report.pdf) |
-| Video (2 min) | [`deliverables/v_final.mp4`](deliverables/v_final.mp4) |
+| Video (2 min) | (https://www.swisstransfer.com/dl/01a14e3c-9fed-728f-b084-d8fbdfae655a)|
 | Capture protocol | `docs/CAPTURE_PROTOCOL.md` (cold-start write-up) + `docs/Flat-Lay_Capture_Protocol_onsite.pdf` (the 6-page checklist we shot with: phone settings, per-garment exposure, styling templates) |
 | Demo UI | `ui/` |
 
