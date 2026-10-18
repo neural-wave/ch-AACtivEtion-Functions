@@ -8,7 +8,7 @@ Team **aactivetion_function** (GitHub: `neural-wave/ch-AACtivEtion-Functions`), 
 | Dev leaderboard | **70.79** (rank 1 at the last scoring round before the freeze) |
 | Final pictures | `submissions/aactivetion_function/` — 15 on-site garments `g01–g15` + 27 dev garments `d001–d027` |
 | Report & video | `deliverables/` |
-| Capture protocol | `docs/CAPTURE_PROTOCOL.md` |
+| Capture protocol | `docs/CAPTURE_PROTOCOL.md` (cold-start write-up) + `docs/Flat-Lay_Capture_Protocol_onsite.pdf` (the 6-page checklist we shot with: phone settings, per-garment exposure, styling templates) |
 | Demo UI | `ui/` |
 
 ## Team
@@ -19,7 +19,7 @@ Team **aactivetion_function** (GitHub: `neural-wave/ch-AACtivEtion-Functions`), 
 | Qi An | UI design and implementation, photography, image comparison, report |
 | Arianna Silvestri | Image optimisation experiments (curvature, pixel fixes), photography, image comparison, video |
 | Eduardo Trabattoni | Model tuning, photography, video |
-| Andrea Gemetti | Ideas and brainstorming |
+| Andrea Gemetti | Ideas and brainstorming (day 1) |
 
 ## What we built, in one paragraph
 
@@ -48,6 +48,7 @@ notebooks/day2_final_pipeline_v2.ipynb   the notebook we actually ran, cell by c
 submissions/aactivetion_function/        THE HAND-IN: one front.png per garment
 deliverables/             report (PDF + Markdown) and the 2-minute video
 docs/CAPTURE_PROTOCOL.md  how to photograph a garment so the pipeline works
+docs/Flat-Lay_Capture_Protocol_onsite.pdf   the detailed on-site checklist (iPhone settings, per-garment table, styling templates)
 ui/                       Gradio demo: before/after slider and magnifier for the jury
 scorer/, scripts/, docs/, baselines/   the organisers' starter material, unchanged
 ```

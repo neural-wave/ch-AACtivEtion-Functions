@@ -49,6 +49,13 @@ The protocol is three minutes per garment with any phone (full text in `docs/CAP
    3–6 close-ups from 20–30 cm (neck label, logo/print, buttons or zip, a pocket, plain fabric), and
    optionally one back shot. Folder `captures/day1_clean/<gid>/`, best front listed in `best_fronts.csv`.
 
+The full on-site version we shot with (6 pages, `docs/Flat-Lay_Capture_Protocol_onsite.pdf`) adds the
+phone set-up (ProRAW, grid and level, 2× lens for tops and 1× for long garments, 3-second timer, flash off),
+a per-garment table with background choice and exposure offset (dark garments on a light surface at +0.3
+to +0.7 EV so the weave stays visible; white garments on mid grey at −0.3 to −0.7 EV), styling templates
+per garment type (sleeves ≈ 15° out, cuffs level, straps up, legs parallel) and the shot list with file
+names.
+
 Why this protocol and not a more elaborate one: the model copies the lay it sees and takes colour,
 texture and details from the close-ups, so the two things worth a customer's effort are a straight,
 symmetric lay and sharp close-ups. Everything else (background removal, lighting, centring) the model
@@ -107,9 +114,14 @@ level — did not beat 70.79 within noise, so the hand-in uses the 70.79 picture
   (logo text, button count) and rejects candidates that drop a detail; a second edit pass restricted
   to the region of a wrong logo.
 
-## 6. Reproducibility
+## 6. Tooling and reproducibility
 
-Repository `neural-wave/ch-AACtivEtion-Functions`: `README.md` (run instructions), `pipeline.py`,
+**Review UI** (`ui/`, Gradio). Because selection is partly by eye, we built a small viewer: load the
+phone photo and a packshot, a scan/reveal transition, a drag-to-reveal before/after comparison on the
+same frame, and a hover magnifier up to 4× for logos, buttons and weave; a two-garment version shows
+two candidates side by side. It never calls the model, so what the jury sees is exactly the hand-in.
+
+**Repository** `neural-wave/ch-AACtivEtion-Functions`: `README.md` (run instructions), `pipeline.py`,
 `notebooks/day2_final_pipeline_v2.ipynb` (the exact cells we ran), `docs/CAPTURE_PROTOCOL.md`,
 `submissions/aactivetion_function/` (hand-in), `ui/` (Gradio demo: before/after slider and magnifier). The 2-minute video is in
 `deliverables/`. Dataset and API key are not in the repository.
