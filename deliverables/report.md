@@ -59,6 +59,12 @@ to +0.7 EV so the weave stays visible; white garments on mid grey at −0.3 to �
 per garment type (sleeves ≈ 15° out, cuffs level, straps up, legs parallel) and the shot list with file
 names.
 
+**What a customer should do.** Lay the garment flat if at all possible: the model copies the lay it sees, so a flat,
+symmetric input needs almost no reconstruction and scored ≈20 points higher than a hanger photo of the same
+garment (Figure 3C). A hanger shot is the low-effort fallback: it still gives a plausible packshot, but the model
+has to invent the lay, with more risk to shape and colour. In both cases take the close-ups; they carry the
+details either way.
+
 Why this protocol and not a more elaborate one: the model copies the lay it sees and takes colour,
 texture and details from the close-ups, so the two things worth a customer's effort are a straight,
 symmetric lay and sharp close-ups. Everything else (background removal, lighting, centring) the model
