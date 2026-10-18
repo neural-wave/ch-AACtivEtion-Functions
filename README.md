@@ -115,3 +115,6 @@ pictures use the default).
 * Every output comes from our pipeline and the garment's own photos. No retrieved product images,
   no copies of the example targets.
 * The dataset and the fal.ai key are not in this repository.
+
+## Video Links
+https://www.swisstransfer.com/dl/01a14e3c-9fed-728f-b084-d8fbdfae655a
