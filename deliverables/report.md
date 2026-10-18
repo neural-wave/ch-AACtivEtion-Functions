@@ -1,6 +1,6 @@
 # From phone photo to packshot: capture, edit, select
 
-**Team AACtivEtion Function** — TEAM_MEMBER_1, TEAM_MEMBER_2, TEAM_MEMBER_3, TEAM_MEMBER_4, TEAM_MEMBER_5
+**Team AACtivEtion Function** — Mohammadmahdi Ameridaragheh, Qi An, Arianna Silvestri, Eduardo Trabattoni, Andrea Gemetti
 Sartiq challenge, Neural Wave 2026, USI Lugano, 16–18 October 2026
 
 ## 1. Problem and approach

@@ -1,7 +1,7 @@
 # AACtivEtion Function — Sartiq Neural Wave 2026
 
 Phone photo of a garment in → studio flat-lay packshot out.
-Team **aactivetion_function**, Neural Wave hackathon, USI Lugano, 16–18 October 2026.
+Team **aactivetion_function** (GitHub: `neural-wave/ch-AACtivEtion-Functions`), Neural Wave hackathon, USI Lugano, 16–18 October 2026.
 
 | | |
 |---|---|
@@ -15,11 +15,11 @@ Team **aactivetion_function**, Neural Wave hackathon, USI Lugano, 16–18 Octobe
 
 | Name | Role |
 |---|---|
-| TEAM_MEMBER_1 | ROLE_1 |
-| TEAM_MEMBER_2 | ROLE_2 |
-| TEAM_MEMBER_3 | ROLE_3 |
-| TEAM_MEMBER_4 | ROLE_4 |
-| TEAM_MEMBER_5 | ROLE_5 |
+| Mohammadmahdi Ameridaragheh | Code, pipeline runs, sensitivity analysis of the parameters, submissions |
+| Qi An | UI design and implementation, photography, image comparison |
+| Arianna Silvestri | Image optimisation experiments (curvature, pixel fixes), photography, image comparison |
+| Eduardo Trabattoni | Model tuning, report, photography |
+| Andrea Gemetti | Team member (day 1) |
 
 ## What we built, in one paragraph
 
